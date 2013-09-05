@@ -2,9 +2,17 @@ import sublime_plugin
 
 class HooksListener(sublime_plugin.EventListener):
     def get_hooks(self, view, hook):
+        # Retrieve the current settings
         view_settings = view.settings()
-        print view_settings.get(hook)
-        # hooks = view_settings.get(
+
+        # Collect all levels of hooks into a list
+        hooks = []
+        hooks += view_settings.get(hook + '_user', [])
+        hooks += view_settings.get(hook + '_project', [])
+        hooks += view_settings.get(hook + '_language', [])
+
+        # Return the collection of hooks
+        return hooks
 
     def on_new(self, view):
         pass
@@ -22,7 +30,7 @@ class HooksListener(sublime_plugin.EventListener):
         pass
 
     def on_post_save(self, view):
-        self.get_hooks(view, 'on_post_save')
+        print self.get_hooks(view, 'on_post_save')
         pass
 
     def on_activated(self, view):
