@@ -1,6 +1,7 @@
 import sublime
 import sublime_plugin
 
+
 class HooksListener(sublime_plugin.EventListener):
     def get_hooks(self, view, namespace):
         # Retrieve the current settings
@@ -43,6 +44,7 @@ class HooksListener(sublime_plugin.EventListener):
         # Run the command in its scope
         scope.run_command(cmd['command'], cmd['args'])
 
+
 # Set up all hooks
 ST_HOOKS = [
     # ST2 / ST3 hooks
@@ -82,5 +84,3 @@ for namespace in ST_HOOKS:
             self.run_hooks(view, namespace)
         return run_hook_namespace
     setattr(HooksListener, namespace, create_run_hook(namespace))
-
-# print HooksListener.__dict__
