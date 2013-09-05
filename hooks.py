@@ -16,28 +16,32 @@ class HooksListener(sublime_plugin.EventListener):
         return cmds
 
     def run_cmds(self, view, namespace):
-        # For each command
+        # Resolve the commands
+        cmds = self.get_cmds(view, namespace)
+
+        # For each command, run it
         for cmd in cmds:
-            # By default, run the command on the view
-            scope = view
-
-            # If there is a scope key
-            scope_key = cmd.get('scope', None)
-            if scope_key:
-                # If it is app, move to app
-                if scope_key == 'app':
-                    scope = sublime
-                elif scope_key == 'window':
-                # Otherwise if it is window, move to window
-                    scope = view.window()
-                else:
-                # Otherwise, complain
-                    raise Exception('Scope key "%s" for `hooks` plugin was not recognized.')
-
-            # Run the command in its scope
-            scope.run_command(cmd['command'], cmd['args'])
+            self.run_cmd(view, cmd)
 
     def run_cmd(self, view, cmd):
+        # By default, run the command on the view
+        scope = view
+
+        # If there is a scope key
+        scope_key = cmd.get('scope', None)
+        if scope_key:
+            # If it is app, move to app
+            if scope_key == 'app':
+                scope = sublime
+            elif scope_key == 'window':
+            # Otherwise if it is window, move to window
+                scope = view.window()
+            else:
+            # Otherwise, complain
+                raise Exception('Scope key "%s" for `hooks` plugin was not recognized.')
+
+        # Run the command in its scope
+        scope.run_command(cmd['command'], cmd['args'])
 
     def on_new(self, view):
         pass
