@@ -77,10 +77,10 @@ ST_HOOKS = [
 
 # For each hook, set it up
 for namespace in ST_HOOKS:
-    ns = namespace
-    def run_hook_namespace(self, view):
-        print 'hii', ns
-        self.run_hooks(view, ns)
-    setattr(HooksListener, ns, run_hook_namespace)
+    def create_run_hook(namespace):
+        def run_hook_namespace(self, view):
+            self.run_hooks(view, namespace)
+        return run_hook_namespace
+    setattr(HooksListener, namespace, create_run_hook(namespace))
 
 # print HooksListener.__dict__
