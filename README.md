@@ -56,14 +56,17 @@ Then, select another file and save it. The plugin will automatically select all 
 
 ## Documentation
 ### Namespacing
-Hooks can be created at the `User`, `Project`, or `Language` level. Each of these has their respective namespaces so `hooks` can pick them up.
+Hooks are required to be namespaced at the `User`, `Project`, or `Language` level. The key will be the `event_name` followed by its `_level`.
 
-The key will be the event name followed by its namespace. For example, an `on_new` hook at the `Project` level will be `on_new_project`; an `on_load` at the `Language` level will be `on_load_language`.
+The namespaces are `_user`, `_project`, and `_language`.
+
+For demonstration:
+
+- An `on_new` hook at the `Project` level will be `on_new_project`
+- An `on_load` at the `Language` level will be `on_load_language`
 
 ### Events
-The list of available hooks depends on your Sublime Text version.
-
-For both Sublime Text 2 and 3, you will have access to the following hooks:
+For both Sublime Text 2 and 3, you will have access to the following events:
 
 - `on_new`
 - `on_clone`
