@@ -43,27 +43,44 @@ class HooksListener(sublime_plugin.EventListener):
         # Run the command in its scope
         scope.run_command(cmd['command'], cmd['args'])
 
-    def on_new(self, view):
-        pass
+# Set up all hooks
+ST_HOOKS = [
+    # ST2 / ST3 hooks
+    'on_new',
+    'on_clone',
+    'on_load',
+    'on_close',
+    'on_pre_save',
+    'on_post_save',
+    # 'on_modified',  # Disabled for potential overrun
+    # 'on_selection_modified',  # Disabled for potential overrun
+    'on_activated',
+    'on_deactivated',
+    # 'on_query_context',  # Disabled for potential overrun
 
-    def on_clone(self, view):
-        pass
+    # ST3 hooks
+    'on_new_async',
+    'on_clone_async',
+    'on_load_async',
+    'on_pre_close',
+    'on_pre_save_async',
+    'on_post_save_async',
+    # 'on_modified_async',  # Disabled for potential overrun
+    # 'on_selection_modified_async',  # Disabled for potential overrun
+    'on_activated_async',
+    'on_deactivated_async',
+    # 'on_text_command',  # Disabled for potential overrun
+    # 'on_window_command',  # Disabled for potential overrun
+    # 'post_text_command',  # Disabled for potential overrun
+    # 'post_window_command',  # Disabled for potential overrun
+]
 
-    def on_load(self, view):
-        pass
+# For each hook, set it up
+for namespace in ST_HOOKS:
+    ns = namespace
+    def run_hook_namespace(self, view):
+        print 'hii', ns
+        self.run_hooks(view, ns)
+    setattr(HooksListener, ns, run_hook_namespace)
 
-    def on_close(self, view):
-        pass
-
-    def on_pre_save(self, view):
-        pass
-
-    def on_post_save(self, view):
-        self.run_hooks(view, 'on_post_save')
-        pass
-
-    def on_activated(self, view):
-        pass
-
-    def on_deactivated(self, view):
-        pass
+# print HooksListener.__dict__
