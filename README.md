@@ -54,7 +54,7 @@ In the opened preferences, create a new key/value pair for `on_post_save_user` w
 
 Then, save twice (once to save settings, another to trigger the plugin).
 
-The plugin will automatically select all text.
+At this step, all text will be selected, demonstrating the hook and command were run.
 
 ## Documentation
 Hooks are stored in the `User`, `Project`, or `Language` settings. Each of these expects a list of dictionaries. Each of those dictionaries satisfies the following:
