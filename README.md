@@ -38,7 +38,7 @@ Packages can be uninstalled via "Package Control: Remove Package" via the comman
 ### Creating a new hook
 For this exercise, we will be creating a binding that selects all text after a save occurs.
 
-A hook can be added at the `User`, `Project`, or `Language` level. For this example, we will add a `User` hook.
+A hook can be added at the `User`, `Project`, or `Language` level. We will add a `User` level hook.
 
 To edit `User` settings, open the command pallete, and select "Preferences: Settings - User".
 
@@ -49,7 +49,7 @@ In the opened preferences, create a new key/value pair for `on_post_save_user` w
   {
     "command": "select_all"
   }
-],
+]
 ```
 
 Then, select another file and save it. The plugin will automatically select all text.
