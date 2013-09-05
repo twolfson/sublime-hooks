@@ -36,10 +36,62 @@ import os; path=sublime.packages_path(); (os.makedirs(path) if not os.path.exist
 Packages can be uninstalled via "Package Control: Remove Package" via the command pallete, `ctrl+shift+p` on Windows/Linux, `command+shift+p` on Mac.
 
 ### Creating a new hook
-_(Coming soon)_
+For this exercise, we will be creating a binding that selects all text after a save occurs.
+
+A hook can be added at the `User`, `Project`, or `Language` level. For this example, we will add a `User` level hook.
+
+To edit `User` settings, open the command pallete, and select "Preferences: Settings - User".
+
+In the opened preferences, create a new key/value pair for `on_post_save_user` with the following:
+
+```json
+"on_post_save_user": [
+  {
+    "command": "select_all"
+  }
+],
+```
+
+Then, select another file and save it. The plugin will automatically select all text.
 
 ## Documentation
-_(Coming soon)_
+### Namespacing
+Hooks can be created at the `User`, `Project`, or `Language` level. Each of these has their respective namespaces so `hooks` can pick them up.
+
+The key will be the event name followed by its namespace. For example, an `on_new` hook at the `Project` level will be `on_new_project`; an `on_load` at the `Language` level will be `on_load_language`.
+
+### Events
+The list of available hooks depends on your Sublime Text version.
+
+For both Sublime Text 2 and 3, you will have access to the following hooks:
+
+- `on_new`
+- `on_clone`
+- `on_load`
+- `on_close`
+- `on_pre_save`
+- `on_post_save`
+- `on_activated`
+- `on_deactivated`
+
+For Sublime Text 3, you gain access to:
+
+- `on_new_async`
+- `on_clone_async`
+- `on_load_async`
+- `on_pre_close`
+- `on_pre_save_async`
+- `on_post_save_async`
+- `on_activated_async`
+- `on_deactivated_async`
+
+Documentation on each hook can be found in the Sublime Text documentation:
+
+Sublime Text 2 - http://www.sublimetext.com/docs/2/api_reference.html#sublime_plugin.EventListener
+
+Sublime Text 3 - http://www.sublimetext.com/docs/3/api_reference.html#sublime_plugin.EventListener
+
+The events not on these lists were excluded due to potential performance issues (e.g. `on_modified`, `on_text_command`).
 
 ## Examples
 _(Coming soon)_
