@@ -22,6 +22,7 @@ My use case was to make a [request][] (via [sublime-request][request] to a serve
 
 [request]: http://github.com/twolfson/sublime-request
 
+## Getting started
 ### Installation
 This package is available under `hooks` inside of [Package Control][pkg-control], a [Sublime Text][subl] plugin that allows for easy management of other plugins.
 
@@ -142,4 +143,3 @@ As of Sep 04 2013, Todd Wolfson has released this repository and its contents to
 It has been released under the [UNLICENSE][].
 
 [UNLICENSE]: UNLICENSE
-
