@@ -55,6 +55,36 @@ In the opened preferences, create a new key/value pair for `on_post_save_user` w
 Then, select another file and save it. The plugin will automatically select all text.
 
 ## Documentation
+Hooks are stored in the `User`, `Project`, or `Language` settings. Each of these expects a list of dictionaries. Each of those dictionaries satisfies the following:
+
+- `command` (required), Command for Sublime to run via `run_command` at the listed `scope`.
+- `args` (optional), Dictionary of arguments to be passed to . Comparable to `args` in "Key Bindings".
+- `scope` (optional), String indicating where to run `command`. By default, commands are run in the `view`. Other options are `window` and `app` which run at the `window` and `sublime` levels respectively.
+
+```js
+"on_post_save_user": [
+  {
+    # Runs `request` command
+    "command": "request",
+
+    # Invokes `request` with `open_args=["http://...:7060/"]`
+    "args": {
+      "open_args": ["http://localhost:7060/"]
+    },
+
+    # Runs `request` via `window.run_command`
+    "scope": "window"
+  }
+]
+```
+
+### Accessing settings
+`User` settings are accessed via "Preferences: Settings - User" in the command pallete.
+
+`Project` settings are accessed via "Project -> Edit Project" from the menu bar. **You must be in a saved project for this option to be accessible.**
+
+`Language` settings are accessed via "Preferences -> Settings - More -> Syntax Specific - User". This will open settings specifically for the language in the open file.
+
 ### Namespacing
 Hooks are required to be namespaced at the `User`, `Project`, or `Language` level. The key will be the `event_name` followed by its `_level`.
 
@@ -96,9 +126,6 @@ Sublime Text 3 - http://www.sublimetext.com/docs/3/api_reference.html#sublime_pl
 
 The events not on these lists were excluded due to potential performance issues (e.g. `on_modified`, `on_text_command`).
 
-## Examples
-_(Coming soon)_
-
 ## Donating
 Support this project and [others by twolfson][gittip] via [gittip][].
 
@@ -106,9 +133,6 @@ Support this project and [others by twolfson][gittip] via [gittip][].
 
 [gittip-badge]: https://rawgithub.com/twolfson/gittip-badge/master/dist/gittip.png
 [gittip]: https://www.gittip.com/twolfson/
-
-## Contributing
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint via [grunt](https://github.com/gruntjs/grunt) and test via `npm test`.
 
 ## Unlicense
 As of Sep 04 2013, Todd Wolfson has released this repository and its contents to the public domain.
