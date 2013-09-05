@@ -2,7 +2,7 @@ import sublime
 import sublime_plugin
 
 class HooksListener(sublime_plugin.EventListener):
-    def get_cmds(self, view, namespace):
+    def get_hooks(self, view, namespace):
         # Retrieve the current settings
         view_settings = view.settings()
 
@@ -15,9 +15,9 @@ class HooksListener(sublime_plugin.EventListener):
         # Return the collection of cmds
         return cmds
 
-    def run_cmds(self, view, namespace):
+    def run_hooks(self, view, namespace):
         # Resolve the commands
-        cmds = self.get_cmds(view, namespace)
+        cmds = self.get_hooks(view, namespace)
 
         # For each command, run it
         for cmd in cmds:
@@ -59,7 +59,7 @@ class HooksListener(sublime_plugin.EventListener):
         pass
 
     def on_post_save(self, view):
-        self.run_cmds(self.get_cmds(view, 'on_post_save'))
+        self.run_hooks(view, 'on_post_save')
         pass
 
     def on_activated(self, view):
