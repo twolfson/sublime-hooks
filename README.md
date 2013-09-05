@@ -6,7 +6,7 @@ Run [Sublime][subl] commands on common event hooks (e.g. `on_new`, `on_post_save
 
 This was designed to give event level bindings to other [Sublime][subl] plugins.
 
-My common use case is making a [request][] (via [sublime-request][request] to a server when a save occurs. My User settings contain the following:
+My use case was to make a [request][] (via [sublime-request][request] to a server when a save occurs. The result was:
 
 ```json
 "on_post_save_user": [
@@ -38,7 +38,7 @@ Packages can be uninstalled via "Package Control: Remove Package" via the comman
 ### Creating a new hook
 For this exercise, we will be creating a binding that selects all text after a save occurs.
 
-A hook can be added at the `User`, `Project`, or `Language` level. For this example, we will add a `User` level hook.
+A hook can be added at the `User`, `Project`, or `Language` level. For this example, we will add a `User` hook.
 
 To edit `User` settings, open the command pallete, and select "Preferences: Settings - User".
 
@@ -64,15 +64,15 @@ Hooks are stored in the `User`, `Project`, or `Language` settings. Each of these
 ```js
 "on_post_save_user": [
   {
-    # Runs `request` command
+    // Runs `request` command
     "command": "request",
 
-    # Invokes `request` with `open_args=["http://...:7060/"]`
+    // Invokes `request` with `open_args=["http://...:7060/"]`
     "args": {
       "open_args": ["http://localhost:7060/"]
     },
 
-    # Runs `request` via `window.run_command`
+    // Runs `request` via `window.run_command`
     "scope": "window"
   }
 ]
