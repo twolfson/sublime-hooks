@@ -57,6 +57,10 @@ Then, save twice (once to save settings, another to trigger the plugin).
 
 At this step, all text will be selected, demonstrating the hook and command were run.
 
+Examples of project and language hooks can be [found below][examples].
+
+[examples]: #examples
+
 ## Documentation
 Hooks are stored in the `User`, `Project`, or `Language` settings. Each of these expects a list of dictionaries. Each of those dictionaries satisfies the following:
 
@@ -128,6 +132,25 @@ Sublime Text 2 - http://www.sublimetext.com/docs/2/api_reference.html#sublime_pl
 Sublime Text 3 - http://www.sublimetext.com/docs/3/api_reference.html#sublime_plugin.EventListener
 
 The events not on these lists were excluded due to potential performance issues (e.g. `on_modified`, `on_text_command`).
+
+## Examples
+### Project
+Project settings should be defined under a `settings` in your current `.sublime-project`.
+
+```js
+// Inside my-project.sublime-project
+{
+  "folders": [
+  // ...
+  "settings": {
+    "on_post_save_project": [
+      {
+        "command": "select_all"
+      }
+    ]
+  }
+}
+```
 
 ## Donating
 Support this project and [others by twolfson][gittip] via [gittip][].
