@@ -11,6 +11,7 @@ class HooksListener(sublime_plugin.EventListener):
         # DEV: Occasionally, ST3 recognizes settings set to `None` causing errors like #1
         # DEV: As a result, we fallback outside of the `dict` lookup
         cmds = []
+        print(view_settings.get(namespace + '_project'))
         cmds += view_settings.get(namespace + '_user') or []
         cmds += view_settings.get(namespace + '_project') or []
         cmds += view_settings.get(namespace + '_language') or []
