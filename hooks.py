@@ -12,7 +12,6 @@ class HooksListener(sublime_plugin.EventListener):
         # DEV: As a result, we fallback outside of the `dict` lookup
         cmds = []
         cmds += view_settings.get(namespace + '_user') or []
-        print(cmds)
         cmds += view_settings.get(namespace + '_project') or []
         cmds += view_settings.get(namespace + '_language') or []
 
@@ -46,8 +45,6 @@ class HooksListener(sublime_plugin.EventListener):
 
         # Run the command in its scope
         scope.run_command(cmd['command'], cmd.get('args', {}))
-
-print('hai')
 
 # Set up all hooks
 ST_HOOKS = [
@@ -87,5 +84,4 @@ for namespace in ST_HOOKS:
         def run_hook_namespace(self, view):
             self.run_hooks(view, namespace)
         return run_hook_namespace
-    print(namespace)
     setattr(HooksListener, namespace, create_run_hook(namespace))
