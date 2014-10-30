@@ -135,7 +135,7 @@ The events not on these lists were excluded due to potential performance issues 
 
 ## Examples
 ### Project
-Project settings should be defined under a `settings` in your current `.sublime-project`.
+Project settings should be defined under a `settings` in your current `.sublime-project`. This can be accessed either via the `Project: Edit` command palette or `Project -> Edit` in the menu.
 
 ```js
 // Inside my-project.sublime-project
