@@ -8,7 +8,7 @@ This was designed to give event level bindings to other [Sublime][subl] plugins.
 
 My use case was to make a [request][] (via [sublime-request][request] to a server when a save occurs. The result was:
 
-```json
+```js
 "on_post_save_user": [
   {
     "command": "request",
@@ -45,7 +45,7 @@ To edit `User` settings, open the command pallete, and select "Preferences: Sett
 
 In the opened preferences, create a new key/value pair for `on_post_save_user` with the following:
 
-```json
+```js
 "on_post_save_user": [
   {
     "command": "select_all"
