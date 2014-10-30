@@ -138,6 +138,7 @@ The events not on these lists were excluded due to potential performance issues 
 User settings should be defined at the top level in your user's `.sublime-settings`. This can be accessed either via the `Preferences: Settings - User` command palette or `Preferences -> Settings - User` in the menu.
 
 ```js
+// Inside Packages/User/Preferences.sublime-settings
 {
   "ignored_packages": [
   // ...
