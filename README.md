@@ -57,7 +57,7 @@ Then, save twice (once to save settings, another to trigger the plugin).
 
 At this step, all text will be selected, demonstrating the hook and command were run.
 
-Examples of project and language hooks can be [found below][examples].
+Examples of user, project, and language hooks can be [found below][examples].
 
 [examples]: #examples
 
@@ -134,6 +134,21 @@ Sublime Text 3 - http://www.sublimetext.com/docs/3/api_reference.html#sublime_pl
 The events not on these lists were excluded due to potential performance issues (e.g. `on_modified`, `on_text_command`).
 
 ## Examples
+### User
+User settings should be defined at the top level in your user's `.sublime-settings`. This can be accessed either via the `Preferences: Settings - User` command palette or `Preferences -> Settings - User` in the menu.
+
+```js
+{
+  "ignored_packages": [
+  // ...
+  "on_post_save_user": [
+    {
+      "command": "select_all"
+    }
+  ]
+}
+```
+
 ### Project
 Project settings should be defined under a `settings` in your current `.sublime-project`. This can be accessed either via the `Project: Edit` command palette or `Project -> Edit` in the menu.
 
