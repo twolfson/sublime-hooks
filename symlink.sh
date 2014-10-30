@@ -1,1 +1,1 @@
-ln -s $PWD ~/.config/sublime-text-2/Packages/hooks
+ln -s $PWD ~/.config/sublime-text-3/Packages/Hooks
