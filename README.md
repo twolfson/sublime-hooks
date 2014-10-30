@@ -152,6 +152,22 @@ Project settings should be defined under a `settings` in your current `.sublime-
 }
 ```
 
+### Language
+Language settings should be defined at the top level in your language's `.sublime-settings`. This can be accessed via `Preferences -> Settings - More -> Syntax Specific - User` in the menu.
+
+```js
+// Inside my-language.sublime-settings
+{
+  "extensions": [
+  // ...
+  "on_post_save_language": [
+    {
+      "command": "select_all"
+    }
+  ]
+}
+```
+
 ## Donating
 Support this project and [others by twolfson][gittip] via [gittip][].
 
