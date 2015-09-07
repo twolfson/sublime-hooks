@@ -142,6 +142,7 @@ User settings should be defined at the top level in your user's `.sublime-settin
 {
   "ignored_packages": [
   // ...
+  ],
   "on_post_save_user": [
     {
       "command": "select_all"
@@ -158,6 +159,7 @@ Project settings should be defined under a `settings` in your current `.sublime-
 {
   "folders": [
   // ...
+  ],
   "settings": {
     "on_post_save_project": [
       {
@@ -176,6 +178,7 @@ Language settings should be defined at the top level in your language's `.sublim
 {
   "extensions": [
   // ...
+  ],
   "on_post_save_language": [
     {
       "command": "select_all"
