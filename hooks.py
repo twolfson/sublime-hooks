@@ -43,8 +43,13 @@ class HooksListener(sublime_plugin.EventListener):
             # Otherwise, complain
                 raise Exception('Scope key "%s" for `hooks` plugin was not recognized.')
 
+        args = cmd.get('args', {})
+        if view.window():
+            variables = view.window().extract_variables()
+            args = sublime.expand_variables(args, variables)
+
         # Run the command in its scope
-        scope.run_command(cmd['command'], cmd.get('args', {}))
+        scope.run_command(cmd['command'], args)
 
 
 # Set up all hooks
