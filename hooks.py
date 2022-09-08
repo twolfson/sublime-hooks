@@ -37,10 +37,10 @@ class HooksListener(sublime_plugin.EventListener):
             if scope_key == 'app':
                 scope = sublime
             elif scope_key == 'window':
-            # Otherwise if it is window, move to window
+                # Otherwise if it is window, move to window
                 scope = view.window() or sublime.active_window()
             else:
-            # Otherwise, complain
+                # Otherwise, complain
                 raise Exception('Scope key "%s" for `hooks` plugin was not recognized.')
 
         args = cmd.get('args', {})
