@@ -1,6 +1,8 @@
 import sublime
 import sublime_plugin
 
+from pathlib import Path
+
 
 class HooksListener(sublime_plugin.EventListener):
     def get_hooks(self, view, namespace):
@@ -46,6 +48,24 @@ class HooksListener(sublime_plugin.EventListener):
         args = cmd.get('args', {})
         if view.window():
             variables = view.window().extract_variables()
+            view_file_name = view.file_name()
+            if view_file_name:
+                # Instead of the current active file_name from
+                # the variables, use the file_name from the view
+                # from which the event was triggered.
+                file_path = Path(view_file_name)
+                variables["file"] = str(file_path)
+                variables["file_path"] = str(file_path.parent)
+                variables["file_base_name"] = file_path.stem
+                # Path.suffix includes the '.' but sublime doesn't
+                variables["file_extension"] = file_path.suffix[1:] if file_path.suffix else ""
+                variables["file_name"] = file_path.name
+            else:
+                # Clear the file related variables when there is
+                # no file_name associated with the view
+                for key in ["file", "file_path", "file_base_name", "file_extension", "file_name"]:
+                    if key in variables:
+                        del variables[key]
             args = sublime.expand_variables(args, variables)
 
         # Run the command in its scope
